@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Spice Empire — Brand Questionnaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    :root{
+      --spice-bg:#1a0f08;
+      --spice-card:#2a1810;
+      --spice-border:rgba(180,110,40,0.22);
+      --spice-border-strong:rgba(180,110,40,0.45);
+      --spice-gold:#c8923a;
+      --spice-gold-light:#e8b96a;
+      --spice-terra:#a84a28;
+      --spice-cream:#f0e4cc;
+      --spice-muted:rgba(240,228,204,0.45);
+      --spice-hint:rgba(240,228,204,0.25);
+      --spice-input-bg:rgba(200,146,58,0.07);
+      --spice-input-border:rgba(200,146,58,0.28);
+    }
+
+    html, body {
+      background: var(--spice-bg);
+      min-height: 100vh;
+    }
+
+    .se-wrap{
+      font-family:'Jost',sans-serif;
+      background:var(--spice-bg);
+      color:var(--spice-cream);
+      max-width:720px;
+      margin:0 auto;
+      min-height:100vh;
+    }
+
+    .se-hero{
+      padding:3.5rem 2.5rem 3rem;
+      border-bottom:0.5px solid var(--spice-border);
+      position:relative;
+      overflow:hidden;
+      /* bleed hero edge to edge outside the 720px container */
+      margin-left:calc(-50vw + 50%);
+      margin-right:calc(-50vw + 50%);
+      padding-left:max(2.5rem, calc(50vw - 330px));
+      padding-right:max(2.5rem, calc(50vw - 330px));
+    }
+
+    .se-hero::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:radial-gradient(ellipse at 80% 0%,rgba(168,74,40,0.18) 0%,transparent 60%),
+                 radial-gradient(ellipse at 0% 100%,rgba(200,146,58,0.1) 0%,transparent 50%);
+      pointer-events:none;
+    }
+
+    .se-eyebrow{
+      font-size:10px;
+      letter-spacing:0.2em;
+      text-transform:uppercase;
+      color:var(--spice-gold);
+      margin-bottom:1.5rem;
+      font-weight:400;
+      position:relative;
+    }
+
+    .se-hero h1{
+      font-family:'Cormorant Garamond',serif;
+      font-size:52px;
+      font-weight:300;
+      line-height:1.05;
+      color:var(--spice-cream);
+      margin-bottom:1.25rem;
+      position:relative;
+    }
+
+    .se-hero h1 em{font-style:italic;color:var(--spice-gold-light);}
+
+    .se-hero-sub{
+      font-size:14px;
+      color:var(--spice-muted);
+      line-height:1.7;
+      max-width:480px;
+      font-weight:300;
+      margin-bottom:2rem;
+      position:relative;
+    }
+
+    .se-meta{display:flex;gap:28px;flex-wrap:wrap;position:relative;}
+
+    .se-meta-item{
+      font-size:11px;
+      color:var(--spice-hint);
+      letter-spacing:0.08em;
+      display:flex;align-items:center;gap:8px;
+    }
+
+    .se-meta-line{
+      width:16px;height:0.5px;
+      background:var(--spice-gold);opacity:0.5;
+    }
+
+    .se-progress{height:1px;background:var(--spice-border);overflow:hidden;}
+
+    .se-progress-fill{
+      height:100%;
+      background:linear-gradient(90deg,var(--spice-terra),var(--spice-gold));
+      transition:width 0.5s ease;
+    }
+
+    .se-section{display:none;}
+    .se-section.active{display:block;animation:seIn 0.3s ease;}
+
+    @keyframes seIn{
+      from{opacity:0;transform:translateY(8px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .se-sec-header{padding:2.5rem 2.5rem 0;margin-bottom:2rem;}
+
+    .se-sec-label{
+      font-size:10px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:var(--spice-gold);
+      opacity:0.7;
+      margin-bottom:0.9rem;
+    }
+
+    .se-sec-header h2{
+      font-family:'Cormorant Garamond',serif;
+      font-size:36px;
+      font-weight:300;
+      line-height:1.15;
+      color:var(--spice-cream);
+      margin-bottom:0.6rem;
+    }
+
+    .se-sec-header h2 em{font-style:italic;color:var(--spice-gold-light);}
+
+    .se-sec-header p{
+      font-size:13px;
+      color:var(--spice-muted);
+      font-weight:300;
+      line-height:1.65;
+      max-width:500px;
+    }
+
+    .se-divider{height:0.5px;background:var(--spice-border);margin:0 2.5rem 2rem;}
+
+    .se-questions{padding:0 2.5rem;}
+
+    .se-q{
+      margin-bottom:2rem;
+      padding-bottom:2rem;
+      border-bottom:0.5px solid var(--spice-border);
+    }
+
+    .se-q:last-child{border-bottom:none;}
+
+    .se-q-num{
+      font-size:10px;
+      letter-spacing:0.12em;
+      color:var(--spice-gold);
+      opacity:0.6;
+      margin-bottom:0.5rem;
+    }
+
+    .se-q-label{
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px;
+      font-weight:400;
+      color:var(--spice-cream);
+      line-height:1.3;
+      margin-bottom:0.4rem;
+    }
+
+    .se-q-hint{
+      font-size:12px;
+      color:var(--spice-hint);
+      font-weight:300;
+      line-height:1.6;
+      margin-bottom:0.9rem;
+      font-style:italic;
+    }
+
+    textarea, input[type="text"]{
+      width:100%;
+      background:var(--spice-input-bg);
+      border:0.5px solid var(--spice-input-border);
+      border-radius:4px;
+      color:var(--spice-cream);
+      font-family:'Jost',sans-serif;
+      font-size:13px;
+      font-weight:300;
+      padding:11px 14px;
+      resize:vertical;
+      line-height:1.6;
+      outline:none;
+      transition:border-color 0.2s,background 0.2s;
+    }
+
+    textarea::placeholder, input[type="text"]::placeholder{color:var(--spice-hint);}
+
+    textarea:focus, input[type="text"]:focus{
+      background:rgba(200,146,58,0.11);
+      border-color:rgba(200,146,58,0.55);
+    }
+
+    textarea{min-height:82px;}
+
+    .se-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+
+    .se-chip{
+      font-size:11px;
+      font-family:'Jost',sans-serif;
+      font-weight:400;
+      letter-spacing:0.05em;
+      padding:6px 14px;
+      border-radius:2px;
+      border:0.5px solid var(--spice-border);
+      background:transparent;
+      color:var(--spice-muted);
+      cursor:pointer;
+      transition:all 0.15s;
+      user-select:none;
+    }
+
+    .se-chip:hover{border-color:var(--spice-border-strong);color:var(--spice-cream);}
+    .se-chip.on{background:var(--spice-terra);border-color:var(--spice-terra);color:var(--spice-cream);}
+
+    .se-price-track{margin-top:8px;display:flex;align-items:center;gap:14px;}
+    .se-price-track input[type="range"]{flex:1;}
+
+    input[type="range"]{
+      -webkit-appearance:none;
+      height:1px;
+      background:var(--spice-border-strong);
+      border:none;outline:none;cursor:pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      width:16px;height:16px;
+      border-radius:50%;
+      background:var(--spice-gold);
+      cursor:pointer;
+    }
+
+    .se-price-val{
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px;
+      color:var(--spice-gold-light);
+      min-width:20px;text-align:center;
+    }
+
+    .se-price-labels{
+      display:flex;justify-content:space-between;
+      font-size:10px;color:var(--spice-hint);
+      letter-spacing:0.05em;margin-top:8px;
+    }
+
+    .se-nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1.75rem 2.5rem 2.5rem;
+      border-top:0.5px solid var(--spice-border);
+      margin-top:1rem;
+    }
+
+    .se-nav-btn{
+      font-family:'Jost',sans-serif;
+      font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+      padding:10px 22px;
+      border:0.5px solid var(--spice-border);
+      background:transparent;color:var(--spice-muted);
+      cursor:pointer;border-radius:2px;transition:all 0.15s;
+    }
+
+    .se-nav-btn:hover{border-color:var(--spice-border-strong);color:var(--spice-cream);}
+    .se-nav-btn.prime{background:var(--spice-terra);border-color:var(--spice-terra);color:var(--spice-cream);}
+    .se-nav-btn.prime:hover{opacity:0.85;}
+    .se-nav-btn:disabled{opacity:0.2;cursor:default;}
+
+    .se-nav-count{font-size:10px;letter-spacing:0.1em;color:var(--spice-hint);}
+
+    .se-orn{
+      display:inline-block;
+      font-family:'Cormorant Garamond',serif;
+      font-size:22px;color:var(--spice-gold);
+      opacity:0.6;margin-bottom:1rem;
+    }
+
+    .se-done{padding:3.5rem 2.5rem 4rem;text-align:center;}
+
+    .se-done h2{
+      font-family:'Cormorant Garamond',serif;
+      font-size:44px;font-weight:300;
+      color:var(--spice-cream);
+      margin-bottom:1rem;line-height:1.1;
+    }
+
+    .se-done h2 em{color:var(--spice-gold-light);font-style:italic;}
+
+    .se-done > p{
+      font-size:14px;color:var(--spice-muted);
+      font-weight:300;line-height:1.7;
+      max-width:420px;margin:0 auto 2.5rem;
+    }
+
+    .se-next{
+      background:var(--spice-input-bg);
+      border:0.5px solid var(--spice-input-border);
+      border-radius:4px;padding:1.5rem 2rem;
+      text-align:left;max-width:420px;margin:0 auto;
+    }
+
+    .se-next-title{
+      font-size:10px;letter-spacing:0.15em;text-transform:uppercase;
+      color:var(--spice-gold);opacity:0.7;margin-bottom:1rem;
+    }
+
+    .se-next ul{list-style:none;}
+
+    .se-next li{
+      font-size:12px;color:var(--spice-muted);
+      font-weight:300;padding:5px 0;
+      display:flex;gap:12px;
+      border-bottom:0.5px solid var(--spice-border);
+    }
+
+    .se-next li:last-child{border:none;}
+    .se-next li::before{content:'—';color:var(--spice-gold);opacity:0.5;flex-shrink:0;}
+
+    .gold-rule{
+      width:40px;height:0.5px;
+      background:var(--spice-gold);opacity:0.4;margin:1.25rem 0;
+    }
+
+    .submitting-msg{
+      font-size:13px;color:var(--spice-muted);
+      text-align:center;padding:1rem 0;
+      display:none;
+    }
+
+    /* ── TOAST ── */
+    .se-toast{
+      position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);
+      background:var(--spice-terra);color:var(--spice-cream);
+      font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.06em;
+      padding:10px 24px;border-radius:2px;
+      opacity:0;transition:opacity 0.3s;pointer-events:none;
+      z-index:999;white-space:nowrap;
+    }
+
+    .se-toast.show{opacity:1;}
+
+    /* ── RESPONSIVE ── */
+
+    /* Tablet — 480px to 720px */
+    @media (max-width: 720px) {
+      .se-hero{ padding: 2.75rem calc(50vw - 310px); }
+      .se-hero h1{ font-size: 42px; }
+      .se-hero-sub{ font-size: 13px; max-width: 100%; }
+
+      .se-sec-header{ padding: 2rem 1.75rem 0; }
+      .se-sec-header h2{ font-size: 30px; }
+
+      .se-divider{ margin: 0 1.75rem 1.75rem; }
+      .se-questions{ padding: 0 1.75rem; }
+
+      .se-nav{ padding: 1.5rem 1.75rem 2rem; }
+
+      .se-done{ padding: 2.5rem 1.75rem 3rem; }
+      .se-done h2{ font-size: 36px; }
+      .se-next{ padding: 1.25rem 1.5rem; }
+    }
+
+    /* Mobile — up to 480px */
+    @media (max-width: 480px) {
+      .se-hero{ padding: 2rem 1.25rem; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); padding-left: 1.25rem; padding-right: 1.25rem; }
+      .se-hero h1{ font-size: 34px; line-height: 1.08; }
+      .se-hero-sub{ font-size: 13px; margin-bottom: 1.5rem; }
+      .se-meta{ gap: 16px; }
+      .se-meta-item{ font-size: 10px; }
+
+      .se-sec-header{ padding: 1.75rem 1.25rem 0; margin-bottom: 1.5rem; }
+      .se-sec-header h2{ font-size: 26px; line-height: 1.2; }
+      .se-sec-header p{ font-size: 12px; }
+      .se-sec-label{ font-size: 9px; letter-spacing: 0.14em; }
+
+      .se-divider{ margin: 0 1.25rem 1.5rem; }
+      .se-questions{ padding: 0 1.25rem; }
+
+      .se-q{ margin-bottom: 1.5rem; padding-bottom: 1.5rem; }
+      .se-q-label{ font-size: 16px; }
+      .se-q-hint{ font-size: 11px; }
+
+      /* Chips: fill width more naturally on small screens */
+      .se-chips{ gap: 7px; }
+      .se-chip{
+        font-size: 11px;
+        padding: 8px 12px;
+        /* Bigger tap target on mobile */
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+      }
+
+      /* Inputs: larger tap target */
+      textarea, input[type="text"]{
+        font-size: 14px;   /* prevents iOS auto-zoom on focus */
+        padding: 12px 14px;
+      }
+
+      textarea{ min-height: 90px; }
+
+      /* Slider thumb: bigger for fat fingers */
+      input[type="range"]::-webkit-slider-thumb{
+        width: 22px; height: 22px;
+      }
+
+      .se-price-val{ font-size: 20px; }
+
+      .se-nav{
+        padding: 1.25rem 1.25rem 1.75rem;
+        gap: 8px;
+      }
+
+      .se-nav-btn{
+        font-size: 10px;
+        padding: 10px 16px;
+        letter-spacing: 0.08em;
+      }
+
+      .se-nav-count{ font-size: 9px; }
+
+      .se-done{ padding: 2rem 1.25rem 3rem; }
+      .se-done h2{ font-size: 30px; }
+      .se-done > p{ font-size: 13px; }
+      .se-next{ padding: 1rem 1.25rem; max-width: 100%; }
+      .se-next li{ font-size: 11px; }
+
+      .se-orn{ font-size: 18px; }
+
+      /* Toast sits above mobile chrome */
+      .se-toast{ bottom: 5rem; font-size: 11px; padding: 10px 18px; white-space: normal; text-align: center; max-width: 80vw; }
+    }
+
+    /* Prevent tap highlight flash on mobile */
+    .se-chip, .se-nav-btn{ -webkit-tap-highlight-color: transparent; }
+  </style>
+</head>
+<body>
+
+<div class="se-wrap">
+
+  <!-- HERO -->
+  <div class="se-hero">
+    <p class="se-eyebrow">Brand + Web Questionnaire</p>
+    <h1>The Spice<br><em>Empire.</em></h1>
+    <div class="gold-rule"></div>
+    <p class="se-hero-sub">This questionnaire helps us understand your vision, your guests, and what makes your restaurant irreplaceable — so we can build a brand and website worthy of the empire you're creating.</p>
+    <div class="se-meta">
+      <span class="se-meta-item"><span class="se-meta-line"></span>38 questions</span>
+      <span class="se-meta-item"><span class="se-meta-line"></span>8 sections</span>
+      <span class="se-meta-item"><span class="se-meta-line"></span>~15 minutes</span>
+    </div>
+  </div>
+
+  <div class="se-progress"><div class="se-progress-fill" id="se-prog" style="width:12.5%"></div></div>
+
+  <!-- ─── SECTION 1 ─── -->
+  <div class="se-section active" id="s1">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 1 of 8 — The Restaurant</p>
+      <h2>Tell us about <em>The Spice Empire.</em></h2>
+      <p>Start at the foundation — what you serve, why it exists, and what makes your kitchen different from every other Indian restaurant in the city.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">01</p>
+        <p class="se-q-label">Describe The Spice Empire in your own words. What does it serve and what is the experience?</p>
+        <p class="se-q-hint">Not the investor pitch — the honest version. What do you want someone to say after their first meal?</p>
+        <textarea id="q01" placeholder="e.g. An Indian fusion restaurant that blends Mughal-era spice traditions with modern, refined dining…"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">02</p>
+        <p class="se-q-label">What is the founding story? Why does this restaurant exist?</p>
+        <p class="se-q-hint">A personal obsession, a gap in the market, a cultural statement — the why matters more than the what.</p>
+        <textarea id="q02"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">03</p>
+        <p class="se-q-label">What format best describes The Spice Empire?</p>
+        <div class="se-chips" id="q03">
+          <span class="se-chip" onclick="tog(this)">Fine dining</span>
+          <span class="se-chip" onclick="tog(this)">Upscale casual</span>
+          <span class="se-chip" onclick="tog(this)">Bar + kitchen</span>
+          <span class="se-chip" onclick="tog(this)">Modern bistro</span>
+          <span class="se-chip" onclick="tog(this)">Tasting menu driven</span>
+          <span class="se-chip" onclick="tog(this)">All-day dining</span>
+          <span class="se-chip" onclick="tog(this)">Private dining focused</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">04</p>
+        <p class="se-q-label">Where is The Spice Empire in its journey?</p>
+        <div class="se-chips" id="q04">
+          <span class="se-chip" onclick="tog(this)">Pre-launch</span>
+          <span class="se-chip" onclick="tog(this)">Just opened</span>
+          <span class="se-chip" onclick="tog(this)">1–2 years in</span>
+          <span class="se-chip" onclick="tog(this)">Established, rebranding</span>
+          <span class="se-chip" onclick="tog(this)">Expanding to new locations</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">05</p>
+        <p class="se-q-label">What are your goals for the next 12–18 months?</p>
+        <p class="se-q-hint">More covers, press coverage, private dining revenue, a second city, a Michelin conversation — be specific.</p>
+        <textarea id="q05"></textarea>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" disabled>← Back</button>
+      <span class="se-nav-count">1 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 2 ─── -->
+  <div class="se-section" id="s2">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 2 of 8 — Your Guests</p>
+      <h2>Who is <em>really</em> walking through your door?</h2>
+      <p>Your guest profile shapes every decision — from the tone of your menu copy to how your website photographs.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">06</p>
+        <p class="se-q-label">Describe your ideal guest in as much detail as possible.</p>
+        <p class="se-q-hint">Age, lifestyle, how they make dining decisions, what they post about, what they care about. Go deep.</p>
+        <textarea id="q06"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">07</p>
+        <p class="se-q-label">What occasions bring guests to The Spice Empire?</p>
+        <div class="se-chips" id="q07">
+          <span class="se-chip" onclick="tog(this)">Date nights</span>
+          <span class="se-chip" onclick="tog(this)">Business dinners</span>
+          <span class="se-chip" onclick="tog(this)">Special celebrations</span>
+          <span class="se-chip" onclick="tog(this)">Casual catch-ups</span>
+          <span class="se-chip" onclick="tog(this)">Solo dining</span>
+          <span class="se-chip" onclick="tog(this)">Weekend brunch</span>
+          <span class="se-chip" onclick="tog(this)">Private events</span>
+          <span class="se-chip" onclick="tog(this)">Late-night drinks + food</span>
+          <span class="se-chip" onclick="tog(this)">Hotel / concierge referral</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">08</p>
+        <p class="se-q-label">Where does your ideal guest discover restaurants like this?</p>
+        <div class="se-chips" id="q08">
+          <span class="se-chip" onclick="tog(this)">Instagram</span>
+          <span class="se-chip" onclick="tog(this)">Google Search</span>
+          <span class="se-chip" onclick="tog(this)">Word of mouth</span>
+          <span class="se-chip" onclick="tog(this)">Food press / publications</span>
+          <span class="se-chip" onclick="tog(this)">OpenTable / Resy</span>
+          <span class="se-chip" onclick="tog(this)">Hotel concierge</span>
+          <span class="se-chip" onclick="tog(this)">YouTube / reels</span>
+          <span class="se-chip" onclick="tog(this)">Yelp / Google reviews</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">09</p>
+        <p class="se-q-label">What does your guest deeply value beyond the food itself?</p>
+        <p class="se-q-hint">Atmosphere, service style, sourcing, story, exclusivity, nostalgia, novelty?</p>
+        <textarea id="q09"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">10</p>
+        <p class="se-q-label">Are there secondary audiences — tourists, Indian diaspora, local food enthusiasts, corporate?</p>
+        <textarea id="q10"></textarea>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(1)">← Back</button>
+      <span class="se-nav-count">2 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 3 ─── -->
+  <div class="se-section" id="s3">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 3 of 8 — Brand Personality</p>
+      <h2>What <em>feeling</em> does the empire create?</h2>
+      <p>The personality of The Spice Empire drives everything — your logo, your menu language, how your staff greet guests, how your Instagram captions read.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">11</p>
+        <p class="se-q-label">If The Spice Empire were a person, who would they be?</p>
+        <p class="se-q-hint">Think: a well-traveled Mughal merchant, a quietly confident chef-owner, an elegant host who knows every guest by name…</p>
+        <textarea id="q11"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">12</p>
+        <p class="se-q-label">Which personality traits best describe the brand you want to build?</p>
+        <div class="se-chips" id="q12">
+          <span class="se-chip" onclick="tog(this)">Warm & welcoming</span>
+          <span class="se-chip" onclick="tog(this)">Bold & commanding</span>
+          <span class="se-chip" onclick="tog(this)">Luxurious & refined</span>
+          <span class="se-chip" onclick="tog(this)">Theatrical & expressive</span>
+          <span class="se-chip" onclick="tog(this)">Rooted & nostalgic</span>
+          <span class="se-chip" onclick="tog(this)">Intellectual & curious</span>
+          <span class="se-chip" onclick="tog(this)">Understated & confident</span>
+          <span class="se-chip" onclick="tog(this)">Modern & progressive</span>
+          <span class="se-chip" onclick="tog(this)">Sensory & immersive</span>
+          <span class="se-chip" onclick="tog(this)">Aspirational</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">13</p>
+        <p class="se-q-label">Which restaurants, hotels, or brands anywhere in the world do you admire?</p>
+        <p class="se-q-hint">They don't have to be Indian or even in hospitality. This tells us about your taste and aspiration.</p>
+        <textarea id="q13" placeholder="e.g. Nobu for its global authority, Gymkhana for its depth of story, the Edition Hotels for their restraint…"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">14</p>
+        <p class="se-q-label">Which brands do you NOT want to look or feel like?</p>
+        <textarea id="q14"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">15</p>
+        <p class="se-q-label">Which visual direction feels most true to The Spice Empire?</p>
+        <div class="se-chips" id="q15">
+          <span class="se-chip on" onclick="tog(this)">Dark & moody</span>
+          <span class="se-chip on" onclick="tog(this)">Rich & textured</span>
+          <span class="se-chip" onclick="tog(this)">Warm & earthy</span>
+          <span class="se-chip on" onclick="tog(this)">Elegant & classical</span>
+          <span class="se-chip" onclick="tog(this)">Editorial & art-forward</span>
+          <span class="se-chip" onclick="tog(this)">Maximalist & layered</span>
+          <span class="se-chip" onclick="tog(this)">Minimal & refined</span>
+          <span class="se-chip" onclick="tog(this)">Not decided yet</span>
+        </div>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(2)">← Back</button>
+      <span class="se-nav-count">3 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 4 ─── -->
+  <div class="se-section" id="s4">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 4 of 8 — The Competitive Landscape</p>
+      <h2>Who else is in <em>the arena?</em></h2>
+      <p>Mapping the competition lets us position The Spice Empire in a way that is distinct, ownable, and built to last.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">16</p>
+        <p class="se-q-label">Who are your direct competitors — Indian or Indian fusion restaurants in your market?</p>
+        <textarea id="q16"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">17</p>
+        <p class="se-q-label">Who are your indirect competitors — upscale dining options your guests might choose instead?</p>
+        <textarea id="q17"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">18</p>
+        <p class="se-q-label">What do your competitors do well that The Spice Empire needs to match or surpass?</p>
+        <textarea id="q18"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">19</p>
+        <p class="se-q-label">What gaps or weaknesses in the competition can The Spice Empire own?</p>
+        <textarea id="q19"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">20</p>
+        <p class="se-q-label">Complete this sentence: "The Spice Empire is the only restaurant in this space that…"</p>
+        <input type="text" id="q20" placeholder="…">
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(3)">← Back</button>
+      <span class="se-nav-count">4 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(5)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 5 ─── -->
+  <div class="se-section" id="s5">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 5 of 8 — Voice & Messaging</p>
+      <h2>How does <em>The Spice Empire</em> speak?</h2>
+      <p>Your voice runs through every menu, every Instagram caption, every reservation confirmation, every sign. Let's find yours.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">21</p>
+        <p class="se-q-label">What is your tagline or core brand promise?</p>
+        <input type="text" id="q21" placeholder="Even a rough direction or a feeling helps">
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">22</p>
+        <p class="se-q-label">How should the brand sound? Select all that feel right.</p>
+        <div class="se-chips" id="q22">
+          <span class="se-chip" onclick="tog(this)">Poetic & evocative</span>
+          <span class="se-chip" onclick="tog(this)">Warm & conversational</span>
+          <span class="se-chip" onclick="tog(this)">Knowledgeable & authoritative</span>
+          <span class="se-chip" onclick="tog(this)">Understated & refined</span>
+          <span class="se-chip" onclick="tog(this)">Romantic & sensory</span>
+          <span class="se-chip" onclick="tog(this)">Nostalgic & storytelling</span>
+          <span class="se-chip" onclick="tog(this)">Luxurious & considered</span>
+          <span class="se-chip" onclick="tog(this)">Bold & unapologetic</span>
+          <span class="se-chip" onclick="tog(this)">Honest & direct</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">23</p>
+        <p class="se-q-label">What are the 3 messages The Spice Empire should always communicate?</p>
+        <p class="se-q-hint">These become the pillars woven into every piece of content.</p>
+        <textarea id="q23" placeholder="e.g. 1. Every spice has a story. 2. This is Indian cuisine on its own terms. 3. The Mughal era, reinterpreted."></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">24</p>
+        <p class="se-q-label">What words or phrases should the brand never use?</p>
+        <textarea id="q24" placeholder="e.g. 'authentic', 'curry', 'exotic', 'fusion' used dismissively…"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">25</p>
+        <p class="se-q-label">What is the one emotion you want guests to carry with them after every interaction?</p>
+        <input type="text" id="q25" placeholder="e.g. Quietly transported. Impressed but at ease. Like they've been let in on something rare.">
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(4)">← Back</button>
+      <span class="se-nav-count">5 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(6)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 6 ─── -->
+  <div class="se-section" id="s6">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 6 of 8 — The Food & Experience</p>
+      <h2>What does <em>the empire</em> actually offer?</h2>
+      <p>A brand must be grounded in the real experience. Let's map what guests will encounter at every turn.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">26</p>
+        <p class="se-q-label">Describe your menu — key dishes, culinary philosophy, dietary accommodations, price range per head.</p>
+        <textarea id="q26"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">27</p>
+        <p class="se-q-label">Beyond the main dining, what else do you offer?</p>
+        <div class="se-chips" id="q27">
+          <span class="se-chip" onclick="tog(this)">Private dining (mezzanine)</span>
+          <span class="se-chip" onclick="tog(this)">Bar & cocktail programme</span>
+          <span class="se-chip" onclick="tog(this)">Patio / outdoor dining</span>
+          <span class="se-chip" onclick="tog(this)">Tasting menus</span>
+          <span class="se-chip" onclick="tog(this)">Catering</span>
+          <span class="se-chip" onclick="tog(this)">Event hosting</span>
+          <span class="se-chip" onclick="tog(this)">Weekend brunch</span>
+          <span class="se-chip" onclick="tog(this)">Delivery / takeaway</span>
+          <span class="se-chip" onclick="tog(this)">Merchandise</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">28</p>
+        <p class="se-q-label">Where does The Spice Empire sit on the price spectrum?</p>
+        <div class="se-price-track">
+          <input type="range" min="1" max="10" value="8" id="q28" oninput="document.getElementById('se-pv').textContent=this.value">
+          <span class="se-price-val" id="se-pv">8</span>
+        </div>
+        <div class="se-price-labels"><span>Everyday value</span><span>Ultra-premium</span></div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">29</p>
+        <p class="se-q-label">How should guests feel moving through each zone — bar, main dining, mezzanine, patio?</p>
+        <p class="se-q-hint">The architecture is set. But what emotional register should each space carry?</p>
+        <textarea id="q29"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">30</p>
+        <p class="se-q-label">How do you want guests to feel from the moment they arrive to the moment they leave?</p>
+        <textarea id="q30"></textarea>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(5)">← Back</button>
+      <span class="se-nav-count">6 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(7)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 7 ─── -->
+  <div class="se-section" id="s7">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 7 of 8 — Website Needs</p>
+      <h2>What should your website <em>do?</em></h2>
+      <p>Beyond looking extraordinary — your site needs to convert visitors into reservations, enquiries, and loyal guests.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">31</p>
+        <p class="se-q-label">What is the primary action you want visitors to take?</p>
+        <div class="se-chips" id="q31">
+          <span class="se-chip" onclick="tog(this)">Make a reservation</span>
+          <span class="se-chip" onclick="tog(this)">View the menu</span>
+          <span class="se-chip" onclick="tog(this)">Enquire about private dining</span>
+          <span class="se-chip" onclick="tog(this)">Find location & hours</span>
+          <span class="se-chip" onclick="tog(this)">Follow on Instagram</span>
+          <span class="se-chip" onclick="tog(this)">Sign up to newsletter</span>
+          <span class="se-chip" onclick="tog(this)">Contact for events</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">32</p>
+        <p class="se-q-label">Which pages does the website need?</p>
+        <div class="se-chips" id="q32">
+          <span class="se-chip" onclick="tog(this)">Home</span>
+          <span class="se-chip" onclick="tog(this)">Our story</span>
+          <span class="se-chip" onclick="tog(this)">Menu</span>
+          <span class="se-chip" onclick="tog(this)">Reservations</span>
+          <span class="se-chip" onclick="tog(this)">Private dining</span>
+          <span class="se-chip" onclick="tog(this)">The bar</span>
+          <span class="se-chip" onclick="tog(this)">Gallery</span>
+          <span class="se-chip" onclick="tog(this)">Press</span>
+          <span class="se-chip" onclick="tog(this)">Contact</span>
+          <span class="se-chip" onclick="tog(this)">Careers</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">33</p>
+        <p class="se-q-label">Do you have a reservation system preference?</p>
+        <div class="se-chips" id="q33">
+          <span class="se-chip" onclick="tog(this)">OpenTable</span>
+          <span class="se-chip" onclick="tog(this)">Resy</span>
+          <span class="se-chip" onclick="tog(this)">Sevenrooms</span>
+          <span class="se-chip" onclick="tog(this)">Tock</span>
+          <span class="se-chip" onclick="tog(this)">Direct phone / email</span>
+          <span class="se-chip" onclick="tog(this)">Custom form on site</span>
+          <span class="se-chip" onclick="tog(this)">Not decided yet</span>
+        </div>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">34</p>
+        <p class="se-q-label">Are there restaurant or hospitality websites you love — for design, function, or both?</p>
+        <p class="se-q-hint">Share URLs or names. This tells us about the level of craft you're drawn to.</p>
+        <textarea id="q34"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">35</p>
+        <p class="se-q-label">Do you have any existing brand assets?</p>
+        <div class="se-chips" id="q35">
+          <span class="se-chip" onclick="tog(this)">Logo (draft or final)</span>
+          <span class="se-chip" onclick="tog(this)">Colour palette</span>
+          <span class="se-chip" onclick="tog(this)">Typography</span>
+          <span class="se-chip" onclick="tog(this)">Photography</span>
+          <span class="se-chip" onclick="tog(this)">Active social media</span>
+          <span class="se-chip" onclick="tog(this)">Menu design</span>
+          <span class="se-chip" onclick="tog(this)">Brand guidelines</span>
+          <span class="se-chip" onclick="tog(this)">Starting from scratch</span>
+        </div>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(6)">← Back</button>
+      <span class="se-nav-count">7 of 8</span>
+      <button class="se-nav-btn prime" onclick="go(8)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 8 ─── -->
+  <div class="se-section" id="s8">
+    <div class="se-sec-header">
+      <p class="se-sec-label">Section 8 of 8 — Vision</p>
+      <h2>The <em>long game.</em></h2>
+      <p>Final questions to understand where The Spice Empire is going — and what makes it truly irreplaceable.</p>
+    </div>
+    <div class="se-divider"></div>
+    <div class="se-questions">
+      <div class="se-q">
+        <p class="se-q-num">36</p>
+        <p class="se-q-label">What does success look like for The Spice Empire in 3–5 years?</p>
+        <p class="se-q-hint">A second location, a James Beard nomination, a cultural institution, a Michelin star, a cookbook — dream openly.</p>
+        <textarea id="q36"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">37</p>
+        <p class="se-q-label">Are there cultural, ethical, or community values that are non-negotiable for this brand?</p>
+        <p class="se-q-hint">Sourcing ethics, representation, community ties, cultural sensitivity around Indian heritage — anything foundational.</p>
+        <textarea id="q37"></textarea>
+      </div>
+      <div class="se-q">
+        <p class="se-q-num">38</p>
+        <p class="se-q-label">What markets or cities do you plan to serve?</p>
+        <input type="text" id="q38" placeholder="e.g. Atlanta to start, Southeast US within 3 years">
+      </div>
+      <div class="se-q" style="border-bottom:none;">
+        <span class="se-orn">✦</span>
+        <p class="se-q-label">Is there anything else we should know about The Spice Empire?</p>
+        <p class="se-q-hint">The detail that doesn't fit anywhere else — a secret dish, a founding belief, a cultural nuance, a story that makes this restaurant yours and no one else's.</p>
+        <textarea id="qFinal" style="min-height:100px;"></textarea>
+      </div>
+    </div>
+    <div class="se-nav">
+      <button class="se-nav-btn" onclick="go(7)">← Back</button>
+      <span class="se-nav-count">8 of 8</span>
+      <button class="se-nav-btn prime" id="submit-btn" onclick="submitForm()">Submit ✦</button>
+    </div>
+    <p class="submitting-msg" id="submitting-msg">Sending your responses…</p>
+  </div>
+
+  <!-- ─── COMPLETE ─── -->
+  <div class="se-section" id="s9">
+    <div class="se-done">
+      <span class="se-orn">✦</span>
+      <h2>The empire<br><em>awaits.</em></h2>
+      <div class="gold-rule" style="margin:1.25rem auto;"></div>
+      <p>Thank you for sharing the story of The Spice Empire. We have everything we need to begin building a brand worthy of the world you're creating.</p>
+      <div class="se-next">
+        <p class="se-next-title">What happens next</p>
+        <ul>
+          <li>Your responses go to our brand strategy team</li>
+          <li>30-min alignment call scheduled within 48 hours</li>
+          <li>Brand positioning & messaging framework — Week 2</li>
+          <li>Visual identity exploration — Week 3–4</li>
+          <li>Website design & development — Week 5–8</li>
+          <li>Complete brand book + website delivery — Week 9</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="se-toast" id="toast"></div>
+
+<script>
+  // ── REPLACE THIS with your Apps Script deployment URL ──
+  const SHEET_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  function tog(el){ el.classList.toggle('on'); }
+
+  function go(n){
+    document.querySelectorAll('.se-section').forEach(s => s.classList.remove('active'));
+    const t = document.getElementById('s' + n);
+    if(t) t.classList.add('active');
+    const p = document.getElementById('se-prog');
+    if(p) p.style.width = Math.min(100, (n / 8) * 100) + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function getChips(id){
+    const group = document.getElementById(id);
+    if(!group) return '';
+    return Array.from(group.querySelectorAll('.se-chip.on'))
+      .map(c => c.textContent.trim())
+      .join(', ');
+  }
+
+  function val(id){
+    const el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  function showToast(msg, duration = 3000){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), duration);
+  }
+
+  // ── SOUND ENGINE (Web Audio API, no external files) ──
+  const AC = new (window.AudioContext || window.webkitAudioContext)();
+
+  function resumeAC(){
+    if(AC.state === 'suspended') AC.resume();
+  }
+
+  function playTone({ type='sine', freq=440, freq2=null, gain=0.18, attack=0.005, decay=0.12, detune=0 }){
+    resumeAC();
+    const osc = AC.createOscillator();
+    const amp = AC.createGain();
+    osc.connect(amp);
+    amp.connect(AC.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, AC.currentTime);
+    if(freq2) osc.frequency.exponentialRampToValueAtTime(freq2, AC.currentTime + decay);
+    osc.detune.setValueAtTime(detune, AC.currentTime);
+    amp.gain.setValueAtTime(0, AC.currentTime);
+    amp.gain.linearRampToValueAtTime(gain, AC.currentTime + attack);
+    amp.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime + decay);
+    osc.start(AC.currentTime);
+    osc.stop(AC.currentTime + decay + 0.05);
+  }
+
+  function playNoise({ gain=0.08, decay=0.08 }){
+    resumeAC();
+    const buf = AC.createBuffer(1, AC.sampleRate * decay, AC.sampleRate);
+    const data = buf.getChannelData(0);
+    for(let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1);
+    const src = AC.createBufferSource();
+    src.buffer = buf;
+    const filter = AC.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 2200;
+    filter.Q.value = 0.8;
+    const amp = AC.createGain();
+    src.connect(filter);
+    filter.connect(amp);
+    amp.connect(AC.destination);
+    amp.gain.setValueAtTime(gain, AC.currentTime);
+    amp.gain.exponentialRampToValueAtTime(0.0001, AC.currentTime + decay);
+    src.start();
+    src.stop(AC.currentTime + decay);
+  }
+
+  // Sound presets
+  function sndChipOn(){
+    // warm pluck — chip selected
+    playTone({ type:'triangle', freq:520, freq2:580, gain:0.14, attack:0.003, decay:0.09 });
+    playTone({ type:'sine',     freq:780, freq2:820, gain:0.06, attack:0.003, decay:0.07 });
+  }
+
+  function sndChipOff(){
+    // softer descending — chip deselected
+    playTone({ type:'triangle', freq:480, freq2:360, gain:0.1, attack:0.003, decay:0.08 });
+  }
+
+  function sndNext(){
+    // two-note ascending chime — moving forward
+    playTone({ type:'sine', freq:520, gain:0.13, attack:0.004, decay:0.12 });
+    setTimeout(() => playTone({ type:'sine', freq:720, gain:0.1, attack:0.004, decay:0.14 }), 80);
+  }
+
+  function sndBack(){
+    // two-note descending — going back
+    playTone({ type:'sine', freq:520, gain:0.1, attack:0.004, decay:0.1 });
+    setTimeout(() => playTone({ type:'sine', freq:380, gain:0.08, attack:0.004, decay:0.12 }), 80);
+  }
+
+  function sndFocus(){
+    // very soft tick — field focus
+    playNoise({ gain:0.04, decay:0.04 });
+  }
+
+  function sndSlider(){
+    // tiny metallic ping — slider move
+    playTone({ type:'sine', freq:900, gain:0.06, attack:0.002, decay:0.05, detune: Math.random()*30 - 15 });
+  }
+
+  function sndSubmit(){
+    // triumphant 3-note rise
+    playTone({ type:'sine', freq:440, gain:0.15, attack:0.005, decay:0.18 });
+    setTimeout(() => playTone({ type:'sine', freq:550, gain:0.13, attack:0.005, decay:0.18 }), 120);
+    setTimeout(() => playTone({ type:'sine', freq:660, gain:0.12, attack:0.005, decay:0.28 }), 240);
+    setTimeout(() => playTone({ type:'triangle', freq:880, gain:0.08, attack:0.005, decay:0.35 }), 360);
+  }
+
+  function sndComplete(){
+    // warm chord bloom — completion
+    [330, 415, 495, 660].forEach((f, i) => {
+      setTimeout(() => playTone({ type:'sine', freq:f, gain:0.1, attack:0.01, decay:0.6 }), i * 60);
+    });
+  }
+
+  // Wire sounds to chip toggles
+  function tog(el){
+    const wasOn = el.classList.contains('on');
+    el.classList.toggle('on');
+    wasOn ? sndChipOff() : sndChipOn();
+  }
+
+  // Wire sounds to navigation
+  function go(n){
+    const current = parseInt(document.querySelector('.se-section.active')?.id?.replace('s','') || '1');
+    if(n === 9){
+      sndComplete();
+    } else if(n > current){
+      sndNext();
+    } else {
+      sndBack();
+    }
+    document.querySelectorAll('.se-section').forEach(s => s.classList.remove('active'));
+    const t = document.getElementById('s' + n);
+    if(t) t.classList.add('active');
+    const p = document.getElementById('se-prog');
+    if(p) p.style.width = Math.min(100, (n / 8) * 100) + '%';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Wire focus sounds to all inputs and textareas
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+      el.addEventListener('focus', sndFocus);
+    });
+    const slider = document.getElementById('q28');
+    if(slider){
+      let lastVal = slider.value;
+      slider.addEventListener('input', () => {
+        if(slider.value !== lastVal){ sndSlider(); lastVal = slider.value; }
+      });
+    }
+  });
+
+  async function submitForm(){
+    const btn = document.getElementById('submit-btn');
+    const msg = document.getElementById('submitting-msg');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    msg.style.display = 'block';
+
+    const payload = {
+      q01: val('q01'), q02: val('q02'),
+      q03: getChips('q03'), q04: getChips('q04'),
+      q05: val('q05'), q06: val('q06'),
+      q07: getChips('q07'), q08: getChips('q08'),
+      q09: val('q09'), q10: val('q10'),
+      q11: val('q11'), q12: getChips('q12'),
+      q13: val('q13'), q14: val('q14'),
+      q15: getChips('q15'), q16: val('q16'),
+      q17: val('q17'), q18: val('q18'),
+      q19: val('q19'), q20: val('q20'),
+      q21: val('q21'), q22: getChips('q22'),
+      q23: val('q23'), q24: val('q24'),
+      q25: val('q25'), q26: val('q26'),
+      q27: getChips('q27'), q28: val('q28'),
+      q29: val('q29'), q30: val('q30'),
+      q31: getChips('q31'), q32: getChips('q32'),
+      q33: getChips('q33'), q34: val('q34'),
+      q35: getChips('q35'), q36: val('q36'),
+      q37: val('q37'), q38: val('q38'),
+      qFinal: val('qFinal')
+    };
+
+    sndSubmit();
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(payload)
+      });
+      go(9);
+    } catch(err) {
+      showToast('Something went wrong. Please try again.');
+      btn.disabled = false;
+      btn.textContent = 'Submit ✦';
+      msg.style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>
